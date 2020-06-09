@@ -419,7 +419,7 @@ public class CameraEngine: NSObject {
 
 public extension CameraEngine {
     
-    public func focus(_ atPoint: CGPoint) {
+    func focus(_ atPoint: CGPoint) {
         if let currentDevice = self.cameraDevice.currentDevice {
 			let performFocus = currentDevice.isFocusModeSupported(.autoFocus) && currentDevice.isFocusPointOfInterestSupported
 			let performExposure = currentDevice.isExposureModeSupported(.autoExpose) && currentDevice.isExposurePointOfInterestSupported
