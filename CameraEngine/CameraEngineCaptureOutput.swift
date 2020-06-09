@@ -43,7 +43,7 @@ class CameraEngineCaptureOutput: NSObject {
     var blockCompletionProgress: blockCompletionProgressRecording?
     
     func capturePhotoBuffer(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
-        guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
+        guard let connectionVideo  = self.stillCameraOutput.connection(with: AVMediaType.video) else {
             blockCompletion(nil, nil)
             return
         }
@@ -52,7 +52,7 @@ class CameraEngineCaptureOutput: NSObject {
     }
     
     func capturePhoto(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhoto) {
-        guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
+        guard let connectionVideo  = self.stillCameraOutput.connection(with: AVMediaType.video) else {
             blockCompletion(nil, nil)
             return
         }
@@ -99,7 +99,7 @@ class CameraEngineCaptureOutput: NSObject {
 }
 
 extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
-    public func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+    public func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         if let error = error {
             self.blockCompletionPhoto?(nil, error)
         }
@@ -141,16 +141,15 @@ extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegat
 }
 
 extension CameraEngineCaptureOutput: AVCaptureFileOutputRecordingDelegate {
-    
-    func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        print("start recording ...")
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+      print("start recording ...")
     }
-    
-    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        print("end recording video ... \(outputFileURL)")
-        print("error : \(error)")
-        if let blockCompletionVideo = self.blockCompletionVideo {
-            blockCompletionVideo(outputFileURL, error as NSError?)
-        }
-    }    
+  
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+      print("end recording video ... \(outputFileURL)")
+      print("error : \(String(describing: error))")
+      if let blockCompletionVideo = self.blockCompletionVideo {
+          blockCompletionVideo(outputFileURL, error as NSError?)
+      }
+    }
 }
