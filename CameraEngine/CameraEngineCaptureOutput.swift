@@ -27,7 +27,7 @@ extension AVCaptureVideoOrientation {
     }
 }
 
-class CameraEngineCaptureOutput: NSObject {
+@objcMembers class CameraEngineCaptureOutput: NSObject {
     
     let stillCameraOutput = AVCapturePhotoOutput()
     let movieFileOutput = AVCaptureMovieFileOutput()
@@ -102,7 +102,7 @@ class CameraEngineCaptureOutput: NSObject {
     }
 }
 
-extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
+@objc extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
     public func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         if let error = error {
             self.blockCompletionPhoto?(nil, error)
@@ -119,7 +119,7 @@ extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
     }
 }
 
-extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
+@objc extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
     
     private func progressCurrentBuffer(_ sampleBuffer: CMSampleBuffer) {
         if let block = self.blockCompletionProgress, self.isRecording {
@@ -144,7 +144,7 @@ extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegat
     }
 }
 
-extension CameraEngineCaptureOutput: AVCaptureFileOutputRecordingDelegate {
+@objc extension CameraEngineCaptureOutput: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
       print("start recording ...")
     }

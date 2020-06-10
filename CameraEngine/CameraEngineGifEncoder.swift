@@ -13,7 +13,7 @@ import AVFoundation
 
 public typealias blockCompletionGifEncoder = (_ success: Bool, _ url: URL?) -> (Void)
 
-class CameraEngineGifEncoder {
+@objcMembers class CameraEngineGifEncoder {
     
     var blockCompletionGif: blockCompletionGifEncoder?
     
