@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CameraEngine"
-  s.version      = "1.0"
+  s.version      = "2.0"
   s.summary      = "CameraEngine library for iOS in Swift"
 
   s.description  = <<-DESC
