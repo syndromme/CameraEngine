@@ -75,11 +75,13 @@ class CameraEngineCaptureOutput: NSObject {
             self.stopRecordVideo()
         }
         self.blockCompletionVideo = blockCompletion
+        movieFileOutput.startRecording(to: url, recordingDelegate: self)
     }
     
     func stopRecordVideo() {
         self.isRecording = false
         self.videoEncoder.stopWriting(self.blockCompletionVideo)
+        movieFileOutput.stopRecording()
     }
     
     func configureCaptureOutput(_ session: AVCaptureSession, sessionQueue: DispatchQueue) {
@@ -94,7 +96,9 @@ class CameraEngineCaptureOutput: NSObject {
         if session.canAddOutput(self.stillCameraOutput) {
             session.addOutput(self.stillCameraOutput)
         }
-        
+        if session.canAddOutput(self.movieFileOutput) {
+            session.addOutput(self.movieFileOutput)
+        }
     }
 }
 

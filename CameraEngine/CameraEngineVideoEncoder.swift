@@ -144,6 +144,7 @@ class CameraEngineVideoEncoder {
         self.firstFrame = false
         self.startTime = CMClockGetTime(CMClockGetHostTimeClock())
         self.initVideoEncoder(url)
+        self.assetWriter.startWriting()
     }
     
     func stopWriting(_ blockCompletion: blockCompletionCaptureVideo?) {
