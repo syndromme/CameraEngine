@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "1.0" }
   s.source_files  = "source", "CameraEngine/*"
+  s.swift_version = "5.0"
 
 end
