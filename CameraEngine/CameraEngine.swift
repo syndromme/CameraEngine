@@ -66,7 +66,7 @@ public enum CameraEngineSessionPreset {
 
 let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
 
-public class CameraEngine: NSObject {
+@objcMembers public class CameraEngine: NSObject {
     
     let session = AVCaptureSession()
     let cameraDevice = CameraEngineDevice()
