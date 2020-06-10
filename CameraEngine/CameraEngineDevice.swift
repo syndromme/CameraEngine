@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-public enum CameraEngineCameraFocus {
+@objc public enum CameraEngineCameraFocus: Int {
     case locked
     case autoFocus
     case continuousAutoFocus
@@ -39,7 +39,7 @@ public enum CameraEngineCameraFocus {
     }
 }
 
-class CameraEngineDevice {
+@objcMembers class CameraEngineDevice {
     
     private var backCameraDevice: AVCaptureDevice!
     private var frontCameraDevice: AVCaptureDevice!

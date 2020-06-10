@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-public enum CameraEngineSessionPreset {
+@objc public enum CameraEngineSessionPreset: Int {
     case photo
     case high
     case medium
@@ -417,7 +417,7 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
 
 //MARK: Extension Device
 
-public extension CameraEngine {
+@objc public extension CameraEngine {
     
     func focus(_ atPoint: CGPoint) {
         if let currentDevice = self.cameraDevice.currentDevice {
@@ -457,7 +457,7 @@ public extension CameraEngine {
 
 //MARK: Extension capture
 
-public extension CameraEngine {
+@objc public extension CameraEngine {
     
     func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
         self.cameraOutput.capturePhoto(settings: self.capturePhotoSettings, blockCompletion)

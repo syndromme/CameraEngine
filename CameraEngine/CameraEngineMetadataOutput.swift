@@ -12,7 +12,7 @@ import AVFoundation
 public typealias blockCompletionDetectionFace = (_ faceObject: AVMetadataFaceObject) -> (Void)
 public typealias blockCompletionDetectionCode = (_ codeObject: AVMetadataMachineReadableCodeObject) -> (Void)
 
-public enum CameraEngineCaptureOutputDetection {
+@objc public enum CameraEngineCaptureOutputDetection: Int {
     case face
     case qrCode
     case bareCode
@@ -57,7 +57,7 @@ public enum CameraEngineCaptureOutputDetection {
     }
 }
 
-class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelegate {
+@objcMembers class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     private var metadataOutput:AVCaptureMetadataOutput?
     private var currentMetadataOutput: CameraEngineCaptureOutputDetection = .none

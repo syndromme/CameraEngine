@@ -89,7 +89,7 @@ extension UIDevice {
     }
 }
 
-class CameraEngineVideoEncoder {
+@objcMembers class CameraEngineVideoEncoder {
     
     private var assetWriter: AVAssetWriter!
     private var videoInputWriter: AVAssetWriterInput!

@@ -14,7 +14,7 @@ public enum CameraEngineDeviceInputErrorType: Error {
     case unableToAddMic
 }
 
-class CameraEngineDeviceInput {
+@objcMembers class CameraEngineDeviceInput {
 
     private var cameraDeviceInput: AVCaptureDeviceInput?
     private var micDeviceInput: AVCaptureDeviceInput?
