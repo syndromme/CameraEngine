@@ -7,4 +7,7 @@
    <FileRef
       location = "container:CameraEngineExample/CameraEngineExample.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:CameraEngineObjCExample/CameraEngineObjCExample.xcodeproj">
+   </FileRef>
 </Workspace>
