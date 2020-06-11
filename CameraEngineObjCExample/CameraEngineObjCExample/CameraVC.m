@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  CameraVC.m
 //  CameraEngineObjCExample
 //
 //  Created by syndromme on 11/06/20.
 //  Copyright © 2020 syndromme. All rights reserved.
 //
 
-#import "ViewController.h"
-#import <AVFoundation/AVFoundation.h>
+#import "CameraVC.h"
 
-@interface ViewController ()
+@interface CameraVC ()
 
 @end
 
-@implementation ViewController
+@implementation CameraVC
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  // Do any additional setup after loading the view.
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+  self.cameraEngine = [[CameraEngine alloc] init];
   [self.cameraEngine startSession];
 }
 
@@ -29,7 +29,7 @@
 - (void) viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   CALayer *layer = self.cameraEngine.previewLayer;
-  if (layer) {
+  if (!layer) {
     return;
   }
   layer.frame = self.view.bounds;
@@ -39,9 +39,13 @@
 - (IBAction)setModeCapture:(id)sender {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"set mode capture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
   [alertController addAction:[UIAlertAction actionWithTitle:@"Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    self.cameraModeLabel.text = @"Photo";
+    [self.shutterButton setTitle:@"take picture" forState:UIControlStateNormal];
     self.mode = ModeCapturePhoto;
   }]];
   [alertController addAction:[UIAlertAction actionWithTitle:@"Video" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    self.cameraModeLabel.text = @"Video";
+    [self.shutterButton setTitle:@"start recording" forState:UIControlStateNormal];
     self.mode = ModeCaptureVideo;
   }]];
   [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
@@ -128,10 +132,13 @@
     }];
   } else if (self.mode = ModeCaptureVideo) {
     if (!self.cameraEngine.isRecording) {
-      NSURL *url = [CameraEngineFileManager temporaryPath:@"video.mp4"];
+//      NSURL *url = [CameraEngineFileManager temporaryPath:@"video.mp4"]; // temp
+      NSURL *url = [CameraEngineFileManager documentPath:@"video.mp4"]; // gallery
+      [self.shutterButton setTitle:@"stop recording" forState:UIControlStateNormal];
       [self.cameraEngine startRecordingVideo:url blockCompletion:^(NSURL * _Nullable url, NSError * _Nullable error) {
         if (url) {
           dispatch_async(dispatch_get_main_queue(), ^{
+            [self.shutterButton setTitle:@"start recording" forState:UIControlStateNormal];
             [CameraEngineFileManager saveVideo:url blockCompletion:^(BOOL success, NSError * _Nullable error) {
               if (success) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success, video saved !" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -147,5 +154,15 @@
     }
   }
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

@@ -7,25 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE367E122491F16B0030B0B3 /* CameraEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB2692491E238007E1C78 /* CameraEngine.framework */; };
+		CE367E132491F16B0030B0B3 /* CameraEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB2692491E238007E1C78 /* CameraEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE367E172491FA290030B0B3 /* CameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE367E152491FA290030B0B3 /* CameraVC.m */; };
+		CE367E182491FA290030B0B3 /* CameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE367E162491FA290030B0B3 /* CameraVC.xib */; };
 		CEDFB2512491E1F8007E1C78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB2502491E1F8007E1C78 /* AppDelegate.m */; };
 		CEDFB2542491E1F8007E1C78 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB2532491E1F8007E1C78 /* SceneDelegate.m */; };
-		CEDFB2572491E1F8007E1C78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB2562491E1F8007E1C78 /* ViewController.m */; };
 		CEDFB25A2491E1F8007E1C78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB2582491E1F8007E1C78 /* Main.storyboard */; };
 		CEDFB25C2491E1FB007E1C78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB25B2491E1FB007E1C78 /* Assets.xcassets */; };
 		CEDFB25F2491E1FB007E1C78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB25D2491E1FB007E1C78 /* LaunchScreen.storyboard */; };
 		CEDFB2622491E1FB007E1C78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB2612491E1FB007E1C78 /* main.m */; };
-		CEDFB26A2491E238007E1C78 /* CameraEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB2692491E238007E1C78 /* CameraEngine.framework */; };
-		CEDFB26B2491E238007E1C78 /* CameraEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB2692491E238007E1C78 /* CameraEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEDFB26C2491E238007E1C78 /* Embed Frameworks */ = {
+		CE367E102491EAB70030B0B3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEDFB26B2491E238007E1C78 /* CameraEngine.framework in Embed Frameworks */,
+				CE367E132491F16B0030B0B3 /* CameraEngine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -33,13 +34,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CEDFB24C2491E1F8007E1C78 /* CameraEngineObjCExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraEngineObjCExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE367E142491FA290030B0B3 /* CameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraVC.h; sourceTree = "<group>"; };
+		CE367E152491FA290030B0B3 /* CameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraVC.m; sourceTree = "<group>"; };
+		CE367E162491FA290030B0B3 /* CameraVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraVC.xib; sourceTree = "<group>"; };
+		CEDFB24C2491E1F8007E1C78 /* CameraEngineExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraEngineExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDFB24F2491E1F8007E1C78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEDFB2502491E1F8007E1C78 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CEDFB2522491E1F8007E1C78 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		CEDFB2532491E1F8007E1C78 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		CEDFB2552491E1F8007E1C78 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CEDFB2562491E1F8007E1C78 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CEDFB2592491E1F8007E1C78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEDFB25B2491E1FB007E1C78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEDFB25E2491E1FB007E1C78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB26A2491E238007E1C78 /* CameraEngine.framework in Frameworks */,
+				CE367E122491F16B0030B0B3 /* CameraEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +74,7 @@
 		CEDFB24D2491E1F8007E1C78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFB24C2491E1F8007E1C78 /* CameraEngineObjCExample.app */,
+				CEDFB24C2491E1F8007E1C78 /* CameraEngineExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,13 +86,14 @@
 				CEDFB2502491E1F8007E1C78 /* AppDelegate.m */,
 				CEDFB2522491E1F8007E1C78 /* SceneDelegate.h */,
 				CEDFB2532491E1F8007E1C78 /* SceneDelegate.m */,
-				CEDFB2552491E1F8007E1C78 /* ViewController.h */,
-				CEDFB2562491E1F8007E1C78 /* ViewController.m */,
 				CEDFB2582491E1F8007E1C78 /* Main.storyboard */,
 				CEDFB25B2491E1FB007E1C78 /* Assets.xcassets */,
 				CEDFB25D2491E1FB007E1C78 /* LaunchScreen.storyboard */,
 				CEDFB2602491E1FB007E1C78 /* Info.plist */,
 				CEDFB2612491E1FB007E1C78 /* main.m */,
+				CE367E142491FA290030B0B3 /* CameraVC.h */,
+				CE367E152491FA290030B0B3 /* CameraVC.m */,
+				CE367E162491FA290030B0B3 /* CameraVC.xib */,
 			);
 			path = CameraEngineObjCExample;
 			sourceTree = "<group>";
@@ -113,7 +116,7 @@
 				CEDFB2482491E1F8007E1C78 /* Sources */,
 				CEDFB2492491E1F8007E1C78 /* Frameworks */,
 				CEDFB24A2491E1F8007E1C78 /* Resources */,
-				CEDFB26C2491E238007E1C78 /* Embed Frameworks */,
+				CE367E102491EAB70030B0B3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -121,7 +124,7 @@
 			);
 			name = CameraEngineObjCExample;
 			productName = CameraEngineObjCExample;
-			productReference = CEDFB24C2491E1F8007E1C78 /* CameraEngineObjCExample.app */;
+			productReference = CEDFB24C2491E1F8007E1C78 /* CameraEngineExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -164,6 +167,7 @@
 				CEDFB25F2491E1FB007E1C78 /* LaunchScreen.storyboard in Resources */,
 				CEDFB25C2491E1FB007E1C78 /* Assets.xcassets in Resources */,
 				CEDFB25A2491E1F8007E1C78 /* Main.storyboard in Resources */,
+				CE367E182491FA290030B0B3 /* CameraVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +178,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB2572491E1F8007E1C78 /* ViewController.m in Sources */,
 				CEDFB2512491E1F8007E1C78 /* AppDelegate.m in Sources */,
+				CE367E172491FA290030B0B3 /* CameraVC.m in Sources */,
 				CEDFB2622491E1FB007E1C78 /* main.m in Sources */,
 				CEDFB2542491E1F8007E1C78 /* SceneDelegate.m in Sources */,
 			);
@@ -323,8 +327,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = syn.CameraEngineObjCExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = syn.CameraEngineExample;
+				PRODUCT_NAME = CameraEngineExample;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -339,8 +343,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = syn.CameraEngineObjCExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = syn.CameraEngineExample;
+				PRODUCT_NAME = CameraEngineExample;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

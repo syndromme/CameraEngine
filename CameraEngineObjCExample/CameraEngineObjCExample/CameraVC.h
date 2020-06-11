@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CameraVC.h
 //  CameraEngineObjCExample
 //
 //  Created by syndromme on 11/06/20.
@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CameraEngine/CameraEngine-Swift.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, ModeCapture) {
    ModeCapturePhoto = 0,
    ModeCaptureVideo = 1,
 };
 
-@interface ViewController : UIViewController
+@interface CameraVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *cameraModeButton;
 @property (weak, nonatomic) IBOutlet UILabel *cameraModeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *shutterButton;
@@ -23,3 +25,4 @@ typedef NS_ENUM(NSInteger, ModeCapture) {
 @property (assign, nonatomic) ModeCapture *mode;
 @end
 
+NS_ASSUME_NONNULL_END
