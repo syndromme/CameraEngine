@@ -80,25 +80,33 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     var sessionQueue: DispatchQueue = DispatchQueue(label: cameraEngineSessionQueueIdentifier)
     
     private var _torchMode: AVCaptureDevice.TorchMode = .off
-    public var torchMode: AVCaptureDevice.TorchMode! {
-        get {
-            return _torchMode
-        }
-        set {
-            _torchMode = newValue
-            configureTorch(newValue)
-        }
+    public var torchMode: AVCaptureDevice.TorchMode = .off {
+      didSet {
+        _torchMode = torchMode
+        configureTorch(torchMode)
+      }
+//        get {
+//            return _torchMode
+//        }
+//        set {
+//            _torchMode = newValue
+//            configureTorch(newValue)
+//        }
     }
     
     private var _flashMode: AVCaptureDevice.FlashMode = .off
-    public var flashMode: AVCaptureDevice.FlashMode! {
-        get {
-            return _flashMode
-        }
-        set {
-            _flashMode = newValue
-            configureFlash(newValue)
-        }
+    public var flashMode: AVCaptureDevice.FlashMode = .off {
+      didSet {
+        _flashMode = flashMode
+        configureFlash(flashMode)
+      }
+//        get {
+//            return _flashMode
+//        }
+//        set {
+//            _flashMode = newValue
+//            configureFlash(newValue)
+//        }
     }
     
     public lazy var previewLayer: AVCaptureVideoPreviewLayer! = {
@@ -108,69 +116,96 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     }()
     
     private var _sessionPresset: CameraEngineSessionPreset = .inputPriority
-    public var sessionPresset: CameraEngineSessionPreset! {
-        get {
-            return self._sessionPresset
+    public var sessionPresset: CameraEngineSessionPreset = .inputPriority {
+        didSet {
+          if self.session.canSetSessionPreset(AVCaptureSession.Preset(rawValue: sessionPresset.foundationPreset())) {
+              self._sessionPresset = sessionPresset
+              self.session.sessionPreset = AVCaptureSession.Preset(rawValue: self._sessionPresset.foundationPreset())
+          }
+          else {
+              fatalError("[CameraEngine] session presset : [\(sessionPresset.foundationPreset())] uncompatible with the current device")
+          }
         }
-        set {
-            if self.session.canSetSessionPreset(AVCaptureSession.Preset(rawValue: newValue.foundationPreset())) {
-                self._sessionPresset = newValue
-                self.session.sessionPreset = AVCaptureSession.Preset(rawValue: self._sessionPresset.foundationPreset())
-            }
-            else {
-                fatalError("[CameraEngine] session presset : [\(newValue.foundationPreset())] uncompatible with the current device")
-            }
-        }
+//        get {
+//            return self._sessionPresset
+//        }
+//        set {
+//            if self.session.canSetSessionPreset(AVCaptureSession.Preset(rawValue: newValue.foundationPreset())) {
+//                self._sessionPresset = newValue
+//                self.session.sessionPreset = AVCaptureSession.Preset(rawValue: self._sessionPresset.foundationPreset())
+//            }
+//            else {
+//                fatalError("[CameraEngine] session presset : [\(newValue.foundationPreset())] uncompatible with the current device")
+//            }
+//        }
     }
     
     private var _cameraFocus: CameraEngineCameraFocus = .continuousAutoFocus
-    public var cameraFocus: CameraEngineCameraFocus! {
-        get {
-            return self._cameraFocus
+    public var cameraFocus: CameraEngineCameraFocus = .continuousAutoFocus {
+        didSet {
+          self.cameraDevice.changeCameraFocusMode(cameraFocus)
+          self._cameraFocus = cameraFocus
         }
-        set {
-            self.cameraDevice.changeCameraFocusMode(newValue)
-            self._cameraFocus = newValue
-        }
+//        get {
+//            return self._cameraFocus
+//        }
+//        set {
+//            self.cameraDevice.changeCameraFocusMode(newValue)
+//            self._cameraFocus = newValue
+//        }
     }
     
     private var _metadataDetection: CameraEngineCaptureOutputDetection = .none
-    public var metadataDetection: CameraEngineCaptureOutputDetection! {
-        get {
-            return self._metadataDetection
+    public var metadataDetection: CameraEngineCaptureOutputDetection = .none {
+        didSet {
+          self._metadataDetection = metadataDetection
+          self.cameraMetadata.configureMetadataOutput(self.session, sessionQueue: self.sessionQueue, metadataType: self._metadataDetection)
         }
-        set {
-            self._metadataDetection = newValue
-            self.cameraMetadata.configureMetadataOutput(self.session, sessionQueue: self.sessionQueue, metadataType: self._metadataDetection)
-        }
+//        get {
+//            return self._metadataDetection
+//        }
+//        set {
+//            self._metadataDetection = newValue
+//            self.cameraMetadata.configureMetadataOutput(self.session, sessionQueue: self.sessionQueue, metadataType: self._metadataDetection)
+//        }
     }
     
     private var _videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings!
-    public var videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings! {
-        set {
-            self._videoEncoderPresset = newValue
+    public var videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings = .Unknow {
+        didSet {
+            self._videoEncoderPresset = videoEncoderPresset
             self.cameraOutput.setPressetVideoEncoder(self._videoEncoderPresset)
         }
-        get {
-            return self._videoEncoderPresset
-        }
+//        set {
+//            self._videoEncoderPresset = newValue
+//            self.cameraOutput.setPressetVideoEncoder(self._videoEncoderPresset)
+//        }
+//        get {
+//            return self._videoEncoderPresset
+//        }
     }
     
     private var _cameraZoomFactor: CGFloat = 1.0
-    public var cameraZoomFactor: CGFloat! {
-        get {
-            if let `captureDevice` = captureDevice {
-                _cameraZoomFactor = captureDevice.videoZoomFactor
-            }
-            
-            return self._cameraZoomFactor
+    public var cameraZoomFactor: CGFloat = 1.0 {
+        didSet {
+          let newZoomFactor = self.cameraDevice.changeCurrentZoomFactor(cameraZoomFactor)
+          if newZoomFactor > 0 {
+              self._cameraZoomFactor = newZoomFactor
+          }
         }
-        set {
-            let newZoomFactor = self.cameraDevice.changeCurrentZoomFactor(newValue)
-            if newZoomFactor > 0 {
-                self._cameraZoomFactor = newZoomFactor
-            }
-        }
+//        get {
+//            if let `captureDevice` = captureDevice {
+//                _cameraZoomFactor = captureDevice.videoZoomFactor
+//            }
+//
+//            return self._cameraZoomFactor
+//        }
+//        set {
+//            let newZoomFactor = self.cameraDevice.changeCurrentZoomFactor(newValue)
+//            if newZoomFactor > 0 {
+//                self._cameraZoomFactor = newZoomFactor
+//            }
+//        }
     }
     
     public var blockCompletionBuffer: blockCompletionOutputBuffer? {
@@ -198,14 +233,18 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     }
     
     private var _rotationCamera = false
-    public var rotationCamera: Bool {
-        get {
-            return _rotationCamera
+      public var rotationCamera: Bool = false {
+        didSet {
+          _rotationCamera = rotationCamera
+          self.handleDeviceOrientation()
         }
-        set {
-            _rotationCamera = newValue
-            self.handleDeviceOrientation()
-        }
+//        get {
+//            return _rotationCamera
+//        }
+//        set {
+//            _rotationCamera = newValue
+//            self.handleDeviceOrientation()
+//        }
     }
     
     public var captureDevice: AVCaptureDevice? {

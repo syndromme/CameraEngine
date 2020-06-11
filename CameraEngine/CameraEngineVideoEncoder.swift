@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-public enum CameraEngineVideoEncoderEncoderSettings: String {
+@objc public enum CameraEngineVideoEncoderEncoderSettings: Int, RawRepresentable {
     case Preset640x480
     case Preset960x540
     case Preset1280x720

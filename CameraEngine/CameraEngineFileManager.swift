@@ -12,7 +12,7 @@ import ImageIO
 
 public typealias blockCompletionSaveMedia = (_ success: Bool, _ error: Error?) -> (Void)
 
-@objcMembers public class CameraEngineFileManager {
+@objcMembers public class CameraEngineFileManager: NSObject {
     
     private class func removeItemAtPath(_ path: String) {
         let filemanager = FileManager.default
