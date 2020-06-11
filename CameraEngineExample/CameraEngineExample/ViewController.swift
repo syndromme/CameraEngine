@@ -132,7 +132,8 @@ class ViewController: UIViewController {
             }
         case .Video:
             if !self.cameraEngine.isRecording {
-                if let url = CameraEngineFileManager.temporaryPath("video.mp4") {
+//                if let url = CameraEngineFileManager.temporaryPath("video.mp4") { // temp
+                if let url = CameraEngineFileManager.documentPath("video.mp4") { // gallery
                     self.buttonTrigger.setTitle("stop recording", for: .normal)
                     self.cameraEngine.startRecordingVideo(url, blockCompletion: {[weak self] (url: URL?, error: NSError?) -> (Void) in
                         if let url = url {
