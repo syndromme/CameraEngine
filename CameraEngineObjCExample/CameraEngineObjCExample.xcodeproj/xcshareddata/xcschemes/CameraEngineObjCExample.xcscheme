@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEDFB24B2491E1F8007E1C78"
-               BuildableName = "CameraEngineObjCExample.app"
+               BuildableName = "CameraEngineExample.app"
                BlueprintName = "CameraEngineObjCExample"
                ReferencedContainer = "container:CameraEngineObjCExample.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEDFB24B2491E1F8007E1C78"
-            BuildableName = "CameraEngineObjCExample.app"
+            BuildableName = "CameraEngineExample.app"
             BlueprintName = "CameraEngineObjCExample"
             ReferencedContainer = "container:CameraEngineObjCExample.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEDFB24B2491E1F8007E1C78"
-            BuildableName = "CameraEngineObjCExample.app"
+            BuildableName = "CameraEngineExample.app"
             BlueprintName = "CameraEngineObjCExample"
             ReferencedContainer = "container:CameraEngineObjCExample.xcodeproj">
          </BuildableReference>

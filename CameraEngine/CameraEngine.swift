@@ -74,7 +74,7 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     let cameraInput = CameraEngineDeviceInput()
     let cameraMetadata = CameraEngineMetadataOutput()
     let cameraGifEncoder = CameraEngineGifEncoder()
-    let capturePhotoSettings = AVCapturePhotoSettings()
+    var capturePhotoSettings = AVCapturePhotoSettings()
     var captureDeviceIntput: AVCaptureDeviceInput?
     
     var sessionQueue: DispatchQueue = DispatchQueue(label: cameraEngineSessionQueueIdentifier)
@@ -499,10 +499,16 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
 @objc public extension CameraEngine {
     
     func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
+        if capturePhotoSettings != nil {
+          self.capturePhotoSettings = AVCapturePhotoSettings()
+        }
         self.cameraOutput.capturePhoto(settings: self.capturePhotoSettings, blockCompletion)
     }
 	
     func capturePhotoBuffer(_ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
+        if capturePhotoSettings != nil {
+          self.capturePhotoSettings = AVCapturePhotoSettings()
+        }
           self.cameraOutput.capturePhotoBuffer(settings: self.capturePhotoSettings, blockCompletion)
     }
     
