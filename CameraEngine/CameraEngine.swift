@@ -298,6 +298,7 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     
     deinit {
         self.stopSession()
+        self.sessionQueue.suspend()
         NotificationCenter.default.removeObserver(self)
     }
     
