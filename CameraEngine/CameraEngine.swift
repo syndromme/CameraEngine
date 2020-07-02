@@ -298,8 +298,7 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
     
     deinit {
         self.stopSession()
-        self.sessionQueue.suspend()
-        NotificationCenter.default.removeObserver(self)
+        self.clearSession()
     }
     
     private func setupSession() {
@@ -308,6 +307,11 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
             self.configureOutputDevice()
             self.handleDeviceOrientation()
         }
+    }
+  
+    public func clearSession() {
+      self.sessionQueue.suspend()
+      NotificationCenter.default.removeObserver(self)
     }
     
     public class func askAuthorization() -> AVAuthorizationStatus {
