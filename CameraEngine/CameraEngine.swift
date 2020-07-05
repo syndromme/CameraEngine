@@ -257,6 +257,9 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
         get {
             return self.cameraOutput.isRecording
         }
+        set {
+            self.cameraOutput.isRecording = newValue
+        }
     }
     
     public var isAdjustingFocus: Bool {
